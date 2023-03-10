@@ -11,6 +11,10 @@ const userModel = require("./models/database");
 // using ejs
 app.set("view engine", "ejs");
 
+// use middleware for parse data from body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // This route for login page
 app.get("/login", (req, resp) => {
   resp.render("login");
@@ -25,7 +29,14 @@ app.post("/login", (req, resp) => {
 });
 // this is create post route for register
 app.post("/register", (req, resp) => {
-  resp.send("Register post");
+  let user = new userModel({
+    username: req.body.username,
+    password: req.body.password,
+  });
+  // use save method and console
+  user.save().then((user) => console.log(user));
+
+  resp.send({ success: true });
 });
 //  This route for logout
 app.get("/logout", (req, resp) => {
