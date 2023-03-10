@@ -1,3 +1,4 @@
+const { hashSync } = require("bcrypt");
 const express = require("express");
 const app = express();
 const port = 8500;
@@ -31,7 +32,7 @@ app.post("/login", (req, resp) => {
 app.post("/register", (req, resp) => {
   let user = new userModel({
     username: req.body.username,
-    password: req.body.password,
+    password: hashSync(req.body.password, 16),
   });
   // use save method and console
   user.save().then((user) => console.log(user));
