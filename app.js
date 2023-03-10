@@ -2,13 +2,16 @@ const express = require("express");
 const app = express();
 const port = 8500;
 
+// using ejs
+app.set("view engine", "ejs");
+
 // This route for login page
 app.get("/login", (req, resp) => {
-  resp.send("login get");
+  resp.render("login");
 });
 // This route for login page
 app.get("/register", (req, resp) => {
-  resp.send("Register get");
+  resp.render("register");
 });
 // This route for post login data
 app.post("/login", (req, resp) => {
