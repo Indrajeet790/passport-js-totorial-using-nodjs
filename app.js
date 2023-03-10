@@ -14,6 +14,14 @@ app.get("/register", (req, resp) => {
 app.post("/login", (req, resp) => {
   resp.send("login post");
 });
+// this is create post route for register
+app.post("/register", (req, resp) => {
+  resp.send("Register post");
+});
+//  This route for logout
+app.get("/logout", (req, resp) => {
+  resp.send("Logout get");
+});
 
 app.listen(port, (err) => {
   if (err) {
