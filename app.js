@@ -22,6 +22,10 @@ app.post("/register", (req, resp) => {
 app.get("/logout", (req, resp) => {
   resp.send("Logout get");
 });
+// This  route for protected
+app.get("/protected", (req, resp) => {
+  resp.send("protected get");
+});
 
 app.listen(port, (err) => {
   if (err) {
