@@ -6,6 +6,10 @@ const port = 8500;
 app.get("/login", (req, resp) => {
   resp.send("login get");
 });
+// This route for login page
+app.get("/register", (req, resp) => {
+  resp.send("Register get");
+});
 
 app.listen(port, (err) => {
   if (err) {
