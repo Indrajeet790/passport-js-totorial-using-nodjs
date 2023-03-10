@@ -10,6 +10,10 @@ app.get("/login", (req, resp) => {
 app.get("/register", (req, resp) => {
   resp.send("Register get");
 });
+// This route for post login data
+app.post("/login", (req, resp) => {
+  resp.send("login post");
+});
 
 app.listen(port, (err) => {
   if (err) {
