@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const port = 8500;
 
+// require mongoose
+const db = require("./config/mongoose");
+
+// import schema
+const userModel = require("./models/database");
+
 // using ejs
 app.set("view engine", "ejs");
 
