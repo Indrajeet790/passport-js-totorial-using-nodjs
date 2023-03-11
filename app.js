@@ -1,6 +1,8 @@
 const { hashSync } = require("bcrypt");
 const express = require("express");
 const app = express();
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const port = 8500;
 
 // require mongoose
@@ -15,6 +17,23 @@ app.set("view engine", "ejs");
 // use middleware for parse data from body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// use cookies-parser-middleware
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1:27017/passport_js",
+      collectionName: "sessions",
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 
 // This route for login page
 app.get("/login", (req, resp) => {
